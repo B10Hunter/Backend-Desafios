@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Zapatilla1",
+    "price": 11800,
+    "thumbnail": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1e44e236aa3c439cb280ac5400cbbad7_9366/Zapatillas_Hoops_2.0_Mid_Blanco_FY8616_01_standard.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Zapatilla2",
+    "price": 32300,
+    "thumbnail": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9af214126b34126b858ad33010d23d4_9366/Zapatillas_de_Senderismo_Terrex_Eastrail_Beige_FZ3363_01_standard.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Zapatilla3",
+    "price": 12800,
+    "thumbnail": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a0562713a9b04eb4a015ae5c00590927_9366/Zapatillas_de_Senderismo_Eastrail_2.0_Negro_S24010_01_standard.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Zapatilla4",
+    "price": 20850,
+    "thumbnail": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8c687d94b5654d4bb435a97f00d5a475_9366/Zapatillas_Grand_Court_Blanco_F36392_01_standard.jpg"
+  }
+]
