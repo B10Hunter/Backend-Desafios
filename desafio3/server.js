@@ -1,12 +1,13 @@
 
-const Contenedor = require('./desafio2') // Importing Container class
-const products = new Contenedor('products.txt') // Create new instance of class Container
+const Contenedor = require('./desafio2'); // Contenedor del desafio2
+const products = new Contenedor('products.txt'); // Creamos un nuevo Contenedor
+const PORT = process.env.Port || 8080;
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
-const server = app.listen(8080 , ()=> {
-    console.log(`Servidor HTTP escuchando en el puerto ${server.address().port}`)
+const server = app.listen(PORT , ()=> {
+    console.log(`Servidor HTTP escuchando en el puerto http://localhost:${PORT}`)
 })
 
 app.get('/productos', async (req, res) => {
@@ -18,7 +19,7 @@ app.get('/productoRandom', async (req, res) => {
     res.send(product)
 })
 app.get('*', (req, res) => {
-    res.send('<h1 style="display:flex;justify-content:center;color:red;text-align:center">Esta mal escrita la ruta imbecil</h1>')
+    res.send('<h1 style="display:flex;justify-content:center;color:black;text-align:center">Conflicto con la Ruta D: <h1>')
 })
 server.on('error', error => {
     console.error(`Error en el servidor. ${error}`)

@@ -62,6 +62,10 @@ class Contenedor{
             console.error(error)
         }
     }
+    async getRandom(){
+        const products = await this.getAll()
+        return this.checkLength(products) ? products[Math.floor(Math.random() * products.length)] : null
+    }
     checkLength(arr){
         if (arr.length === 0){
             console.error('El Array esta vacio')
