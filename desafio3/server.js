@@ -19,7 +19,7 @@ app.get('/productoRandom', async (req, res) => {
     res.send(product)
 })
 app.get('*', (req, res) => {
-    res.send('<h1 style="display:flex;justify-content:center;color:black;text-align:center">Conflicto con la Ruta D: <h1>')
+    res.send('<h1 style="display:flex;justify-content:center;color:black;text-align:center">Hola a Todos! :D <h1>')
 })
 server.on('error', error => {
     console.error(`Error en el servidor. ${error}`)
