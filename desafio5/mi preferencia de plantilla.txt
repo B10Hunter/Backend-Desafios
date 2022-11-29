@@ -1,0 +1,3 @@
+Hola Tutor, 
+la plantilla que mas me gusto usar fue "Ejs" ,por su comodida para pasar datos del servidor al frontend.
+Ademas no es dificil de usar ,me hizo acordar un poco a React cuando creamos los archivos.ejs que seria como los componentes en React.
