@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2022-12-4  22:56",
+    "mail": "usario1@outlook.es",
+    "text": "hola"
+  },
+  {
+    "date": "2022-12-4  22:56",
+    "mail": "usario2@outlook.es",
+    "text": "hola"
+  },
+  {
+    "date": "2022-12-4  23:5",
+    "mail": "flipskate@outlook.es",
+    "text": "4wqewq"
+  },
+  {
+    "date": "2022-12-4  23:8",
+    "mail": "flipskate@outlook.es",
+    "text": "12123123"
+  }
+]
