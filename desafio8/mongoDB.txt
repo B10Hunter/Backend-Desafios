@@ -1,0 +1,198 @@
+
+mongo    // Inicializacion de mongo
+show databases    // Chequeo de bases de datos creadas y disponibles
+------------------------------------------------------------
+                      MENSAJES
+
+use mensajes    // Creacion y acceso a coleccion "mensajes"
+db.dropDatabase()    // Borramos todo lo que tiene dentro
+db.mensajes.insertMany([
+    {
+    "date": "2023-1-2",
+    "mail": "user1@prueba.com",
+    "text": "asasasasas"
+  },
+  {
+    "date": "2023-1-2",
+    "mail": "user2@prueba.com",
+    "text": "hoolaa"
+  },
+  {
+    "date": "2023-1-2",
+    "mail": "user1@prueba.com",
+    "text": "asdasdasdas"
+  },
+  {
+    "date": "2023-1-222:14",
+    "mail": "user3@prueba.com",
+    "text": "adasdasd"
+  },
+  {
+    "date": "2023-1-2  20:13",
+    "mail": "user2@prueba.com",
+    "text": "eweweewwe"
+  },
+  {
+    "date": "2023-1-2  20:45",
+    "mail": "user1@prueba.com",
+    "text": "212"
+  },
+  {
+    "date": "2023-1-2  21:03",
+    "mail": "user2@prueba.com",
+    "text": "user2"
+  },
+  {
+    "date": "2023-1-2 21:04",
+    "mail": "user3@prueba.com",
+    "text": "user3"
+  },
+  {
+    "date": "2023-1-2 21:06",
+    "mail": "user4@prueba.com",
+    "text": "user4"
+  },
+  {
+    "date": "2023-1-2 21:06",
+    "mail": "lslsls@asdasd.com",
+    "text": "lkñasñlas"
+  }
+])    // Mensajes insertados
+
+------------------------------------------------------------------
+                      PRODUCTOS
+
+use productos    // Creacion y acceso a coleccion "productos"
+db.dropDatabase()    // Borramos todo lo que tiene dentro
+db.productos.insertMany([
+    {
+    "id": 1,
+    "name": "Zapatilla1",
+    "price": 11800,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1e44e236aa3c439cb280ac5400cbbad7_9366/Zapatillas_Hoops_2.0_Mid_Blanco_FY8616_01_standard.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Zapatilla2",
+    "price": 32300,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9af214126b34126b858ad33010d23d4_9366/Zapatillas_de_Senderismo_Terrex_Eastrail_Beige_FZ3363_01_standard.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Zapatilla3",
+    "price": 12800,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a0562713a9b04eb4a015ae5c00590927_9366/Zapatillas_de_Senderismo_Eastrail_2.0_Negro_S24010_01_standard.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Zapatilla4",
+    "price": 20850,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8c687d94b5654d4bb435a97f00d5a475_9366/Zapatillas_Grand_Court_Blanco_F36392_01_standard.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Zapatilla5",
+    "price":  33.999,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f9af214126b34126b858ad33010d23d4_9366/Zapatillas_de_Senderismo_Terrex_Eastrail_Beige_FZ3363_01_standard.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Zapatilla6",
+    "price": 37.999,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/09c5ea6df1bd4be6baaaac5e003e7047_9366/Zapatillas_Forum_Low_Blanco_FY7756_01_standard.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Zapatilla7",
+    "price": 39.999,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/42ceae1c472c45e7b2f4ad7c0105a959_9366/Zapatillas_Terrex_AX4_Primegreen_Hiking_Azul_GZ3009_01_standard.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Zapatilla8",
+    "price": 27.999,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1f2fb8173e5e43f98417ae1400a37cd7_9366/Zapatillas_de_Trail_Running_Tracefinder_Gris_Q47234_01_standard.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Zapatilla9",
+    "price": 44.999,
+    "src": "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/2f9a7d2b83b24208aaa2aed80147b992_9366/Zapatillas_NMD_R1_Azul_HP9857_01_standard.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Zapatilla10",
+    "price":  47.999,
+    "src": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/0131c01669024f8a8ac4adf800b3f976_9366/Zapatillas_NMD_R1_Blanco_GY6067_01_standard.jpg"
+  }
+])    // Productos insertados 
+
+-----------------------------------------------------------------
+// Mostrar todos los documentos de las colecciones
+
+db.mensajes.find()
+db.productos.find()
+
+// Mostrar la cantidad de documentos de cada colecciones
+
+db.mensajes.countDocuments()
+db.productos.countdocuments()
+
+---------------------------------------------------------------
+                          CRUD
+
+// Agregar un producto en la coleccion de productos
+
+db.productos.insertOne({"name":"new Producto","price":4800,"src":"new/route"})
+ //Aviso que tengo productos con precios muy alto por que son Zapatillas
+ //son precios origianles de la tienda de donde las busque
+// Consultas
+
+ - Listar los productos con precio menor a 1000 pesos
+
+db.productos.find({"price" : {$lt : 1000}})
+
+ - Listar los productos con precio entre los 1000 a 3000 pesos
+
+db.productos.find({"price" : {$gte : 1000 , $lte : 3000}})
+
+ - Listar los productos con precio mayor a 3000 pesos
+
+db.productos.find({"price" : {$gt : 3000}})
+
+ - Realizar una consulta que traiga sólo el nombre del tercer producto más barato
+
+db.productos.find({},{_id:0,"name":1}).sort({"price":1}).limit(1).skip(2)
+!! Para probar que el resultado es el correcto, el siguiente comando muestra la lista de 
+   todos los elementos ordenados por precios pero solo con sus nombres
+    - db.productos.find({},{_id:0,"name":1}).sort({"price":1})
+
+ - Hacer una actualización sobre todos los productos, agregando el campo stock a todos
+ellos con un valor de 100.
+
+db.productos.updateMany({}, {$set :{"stock" : 100}})
+db.productos.find()
+
+ - Cambiar el stock a cero de los productos con precios mayores a 4000 pesos.
+
+db.productos.updateMany({"price" : {$gt : 4000}}, {$set :{"stock" : 0}})
+
+ - Borrar los productos con precio menor a 1000 pesos
+
+db.productos.deleteMany({"price" : {$lt : 1000}})
+
+----------------------------------------------------------------------------------------
+
+Crear un usuario 'lucas' clave: '12345' que sólo pueda leer la base de datos ecommerce.
+Verificar que lucas no pueda cambiar la información.
+
+use admin
+db.createUser({
+  user : "lucas",
+  pwd : "12345",
+  roles : [
+    {role :"read", db:"products"},
+    {role :"read", db:"mensajes"}
+  ]
+})
+
