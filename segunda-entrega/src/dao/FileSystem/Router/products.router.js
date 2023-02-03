@@ -1,8 +1,9 @@
 import express from 'express';
 import { Container } from '../cont/ContArchivo.js';
 
+
 const productosRouter = express.Router();
-const productosApi = new Container('./json/productos.json')
+const productosApi = new Container('../json/productos.json')
 
 // permisos de administrador
 
