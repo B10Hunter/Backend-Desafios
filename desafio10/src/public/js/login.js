@@ -1,16 +1,24 @@
-const form  = document.getElementById('loginForm');
+const form = document.getElementById('loginForm');
+const errorElement = document.getElementById('loginError');
 
-form.addEventListener('submit',evt=>{
-    evt.preventDefault();
-    const data = new FormData(form);
-    const obj = {};
-    data.forEach((value,key)=>obj[key]=value);
-    fetch('/api/sessions/login',{
-        method:'POST',
-        body:JSON.stringify(obj),
-        headers: {
-            'Content-Type':'application/json'
-        }
-    }).then(result=>result.json()).then(json=>console.log(json))
-    
-})
+form.addEventListener('submit', evt => {
+  evt.preventDefault();
+  const data = new FormData(form);
+  const obj = {};
+  data.forEach((value, key) => obj[key] = value);
+  fetch('/api/sessions/login', {
+    method: 'POST',
+    body: JSON.stringify(obj),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      window.location.href = '/inicio';
+    } else {
+      response.json().then(data => {
+        errorElement.textContent = data.error;
+      });
+    }
+  }).catch(err => console.error(err));
+});

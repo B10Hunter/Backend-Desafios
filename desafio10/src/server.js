@@ -3,9 +3,9 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import handlebars from "express-handlebars"
 import __dirname from "./utils.js";
-import routerH from "./router/views.router.js";
+import viewsRouter from "./router/views.router.js";
 import mongoose from 'mongoose'
-import sessionRouter from './router/sessions.router.js'
+import sessionsRouter from './router/sessions.router.js'
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -36,7 +36,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 //Routers
-app.use('/', routerH ) 
-app.use('/api/sessions', sessionRouter )
+app.use('/',viewsRouter);
+app.use('/api/sessions',sessionsRouter);
+
+app.get('/', async(req,res) =>{
+    
+    res.redirect('/login')
+
+})
 
 app.listen(PORT, () => console.log(`servidor en ${PORT }`))
