@@ -49,7 +49,7 @@ router.get('/githubcallback', passport.authenticate('github'),(req,res) =>{
     email: user.email,
     role: user.role,
   };
-  res.send({status:"success",message:"Logueado pero con Github"})
+  res.redirect('/inicio')//si sale todo bien te redirige al inicio con el usuario logueado
 })
 
 export default router;
