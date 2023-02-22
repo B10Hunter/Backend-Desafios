@@ -1,6 +1,7 @@
 import  {Router} from 'express';
+import passport from 'passport';
 import userModel from '../model/UserSchema.js';
-import { createHash , validatePassword} from '../utils.js';
+import createHash  from '../utils.js';
 
 const router = Router();
 
@@ -19,16 +20,10 @@ router.post('/register',async(req,res)=>{
     res.send({status:"success",payload:result})
 })
 
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).send({ status: 'error', error: 'Valores incompletos' });
-  }
-  const user = await userModel.findOne({ email });
-  if (!user) return res.status(400).send({ status: 'error', error: 'Credenciales invalidas' });
-  const isValidPassword = await validatePassword(password , user.password)
-  if(!isValidPassword) return res.status (400).send({status:"error", error:"Contraseña inválida"})
+router.post('/login',passport.authenticate('login', {failureRedirect:'/api/sessions/loginFail',failureMessage:true}), async (req, res) => {
   
+  const user = req.user;
+
   req.session.user = {
     id: user._id,
     email: user.email,
@@ -37,7 +32,25 @@ router.post('/login', async (req, res) => {
   res.redirect('/inicio'); // Redirige al usuario a la página de bienvenida
 });
 
+router.get('/loginFail', (req,res)=>{
+  console.log(req.session.messages);
+  if(req.session.messages.length>5) return res.status(400).send({message:"Supero los limites de intento bloquealo"})
+  res.status(400).send({status:"error", error:"Error de autenticación"})
+})
 
+router.get('/github',passport.authenticate('github'),(req,res) =>{})
+
+router.get('/githubcallback', passport.authenticate('github'),(req,res) =>{
+
+  const user = req.user;
+
+  req.session.user = {
+    id: user._id,
+    email: user.email,
+    role: user.role,
+  };
+  res.send({status:"success",message:"Logueado pero con Github"})
+})
 
 export default router;
 

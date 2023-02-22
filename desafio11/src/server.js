@@ -6,6 +6,8 @@ import __dirname from "./utils.js";
 import viewsRouter from "./router/views.router.js";
 import mongoose from 'mongoose'
 import sessionsRouter from './router/sessions.router.js'
+import passport from "passport";
+import initializeStrategies from "./config/passport.config.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,6 +26,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+initializeStrategies();
+app.use(passport.initialize());
+app.use(passport.session());
 
 //motor de vista
 app.engine('handlebars', handlebars.engine());
