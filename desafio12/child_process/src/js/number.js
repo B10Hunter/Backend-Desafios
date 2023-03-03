@@ -1,16 +1,16 @@
  const ramdoms = (cant) =>{
-    const resultados = {};
-    for (let i = 0; i < cant; i++) {
-      const numero = Math.floor(Math.random() * 1000) + 1;
-      resultados[numero] = (resultados[numero] || 0) + 1;
+    const randoms = Array.from({length : cant}, () => Math.floor(Math.random()* 1001))
+    const res = {}
+    for (const num of randoms){
+        res[num] = res[num] ? res[num]+1 : 1
     }
-    return resultados;
+    return res
   }
 
 
 process.on('message', (cant) => {
-   
+   const number = ramdoms(cant)
 
-    process.send( cant);
+    process.send( number);
   });
   

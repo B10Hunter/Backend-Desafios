@@ -11,11 +11,10 @@ router.get('/randoms', (req,res) =>{
     cant = 100000000;
   }
 
-
   const childProcess = fork('./js/number.js');
   childProcess.send(cant)
   childProcess.on('message', val =>{
-    res.json(`numero ${val}`)
+    res.json(val)
   })
 })
 
