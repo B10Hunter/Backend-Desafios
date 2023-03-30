@@ -9,7 +9,7 @@ const PORT = config.app.PORT;
 
 app.get('/', async(req,res) =>{
     
-    res.redirect('/api/randoms')
+   // res.redirect('/api/randoms')
 
 })
 
