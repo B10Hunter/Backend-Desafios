@@ -51,7 +51,7 @@ router.post('/login',passport.authenticate('login',{failureRedirect:'/api/sessio
 
 router.get('/loginFail',(req,res)=>{
   res.send("Algo salió mal")
-}) ;
+});
 
 router.get('/loginFail', (req,res)=>{
 
