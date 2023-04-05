@@ -23,7 +23,7 @@ const productos = await apiprod.json();
     
     // Buscar el producto correspondiente en la lista de productos obtenida de la API
     const productoSeleccionado = productos.find((prod) => prod._id === idProducto);
-console.log(productoSeleccionado)
+
     if (!productoSeleccionado) {
       console.log(`No se encontró ningún producto con id ${idProducto}`);
       return;
@@ -36,7 +36,6 @@ console.log(productoSeleccionado)
           "Content-Type":"application/json"
       }
     });
-
     
   });
 });
