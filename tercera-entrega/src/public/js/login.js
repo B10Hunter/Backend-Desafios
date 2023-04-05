@@ -1,3 +1,6 @@
+
+
+
 const form = document.getElementById('loginForm');
 
 form.addEventListener('submit',async evt=>{
@@ -14,5 +17,6 @@ form.addEventListener('submit',async evt=>{
         }
     })
     const result = await response.json();
-    console.log(result);
+    if(result.status==="success")
+    window.location.replace('/inicio');
 })

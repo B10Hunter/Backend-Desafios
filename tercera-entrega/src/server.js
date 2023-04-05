@@ -10,6 +10,10 @@ import passport from "passport";
 import initializeStrategies from "./config/passport.config.js";
 import config from "./config/config.js";
 import { addLogger } from "./middlewares/logger.js";
+import cookieParser from 'cookie-parser';
+import cartRouter from "./router/cart.router.js"
+import apiProd from "./router/product.router.js";
+
 
 const app = express();
 const PORT = config.app.PORT;
@@ -42,6 +46,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(`${__dirname}/public`))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 initializeStrategies();
@@ -52,7 +57,8 @@ app.use(addLogger);
 //Routers
 app.use('/',viewsRouter);
 app.use('/api/sessions',sessionsRouter);
-
+app.use("/api/carrito", cartRouter);
+app.use("/api/productos", apiProd);
 app.get('/', async(req,res) =>{
     
     res.redirect('/login')

@@ -34,6 +34,7 @@ router.post('/register',uploader.single('avatar'),async(req,res)=>{
   }
 })
 
+
 router.post('/login',passport.authenticate('login',{failureRedirect:'/api/sessions/loginFail',session:false}),async(req,res)=>{
   try{
       const userToken = {
