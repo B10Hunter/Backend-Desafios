@@ -12,7 +12,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}//tercera-entrega//src//server.js",
+            "program": "${workspaceFolder}//desafio16//src//server.js",
             "env":{
                 "PORT": "8080",
                 "MONGO_URL": "mongodb+srv://Lucas:Lucasb10@proyecto-backend-coderh.llkhfym.mongodb.net/ProyectoBackend?retryWrites=true&w=majority",
