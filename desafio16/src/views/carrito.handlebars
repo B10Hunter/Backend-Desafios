@@ -17,8 +17,11 @@
             <td class="text-center text-light">#{{this.id}}</td>
             <td class="text-center text-light">{{this.name}}</td>
             <td class="text-center text-light">${{this.price}}</td>
-            <td class="text-center text-light "><img src="{{this.src}}" alt="src" height="100 " width="100"></td>
+            <td class="text-center text-light "><img src="{{this.src}}" alt="src" height="100 " width="100">
+            </td>
             <td>
+              <button class="borrar-prod-cart"  data-id="{{this._id}}" >borrar producto</button>
+            </td>
           </tr>
         {{/each}}
       </tbody>
@@ -27,3 +30,6 @@
 {{else}}
   <p>Tu carrito está vacío</p>
 {{/if}}
+
+<script src="/js/cart.js">
+</script>

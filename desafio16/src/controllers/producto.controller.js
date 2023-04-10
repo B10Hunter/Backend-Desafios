@@ -2,17 +2,20 @@ import ProductosM from "../dao/productos.js";
 
 const productos = new ProductosM();
 
+//Mostrar produsctos
 const  prods =  async (req, res, next) => {
     const totalProductos = await productos.getAll()
     res.send(JSON.stringify(totalProductos));
 }
 
+//Mostrar prods por id
 const ProductoPorID =  async (req, res, next) => {
     const { id } = req.params;
     const resultado = await productos.getById(id);
     res.send(JSON.stringify(resultado));
 }
 
+//Agregar prod
 const addProd =  async (req, res, next) => {
     const file = req.file
     const nuevoProd = {
@@ -24,6 +27,7 @@ const addProd =  async (req, res, next) => {
     res.send(JSON.stringify(prodBD._id));
 }
 
+//Actualizar prod
 const putProd =  async (req, res, next) => {
     if (admin) {
         const { id } = req.params;
@@ -41,6 +45,7 @@ const putProd =  async (req, res, next) => {
     }
 }
 
+//Eliminar prod
 const deleteProd =  async (req, res, next) => {
     const { id } = req.params;
     const respuesta = await productos.deleteById(id);

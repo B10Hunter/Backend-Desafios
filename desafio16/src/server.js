@@ -59,24 +59,12 @@ app.use('/',viewsRouter);
 app.use('/api/sessions',sessionsRouter);
 app.use("/api/carrito", cartRouter);
 app.use("/api/productos", apiProd);
+
 app.get('/', async(req,res) =>{
     
     res.redirect('/login')
 
 })
 
-app.get('/info', (req,res)=>{
-    res.json({
-        server:{
-            name: process.title,
-            nodeVersion: process.version,
-            pid: process.pid,
-            uptime: process.uptime(),
-            memoryUsage: process.memoryUsage(),
-            platform: process.platform,
-            architecture: process.arch
-        }
-    })
-})
 
 app.listen(PORT, () => console.log(`servidor en ${PORT }`))

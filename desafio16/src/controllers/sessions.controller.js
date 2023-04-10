@@ -3,6 +3,7 @@ import userModel from '../model/UserSchema.js';
 import {createHash}  from '../utils.js';
 import config from '../config/config.js';
 
+//Regitrarse (Post)
 const register = async(req,res)=>{
     
     try {
@@ -28,6 +29,7 @@ const register = async(req,res)=>{
     }
   }
 
+//Iniciar sesion por email y contraseña
 const login = async(req,res)=>{
     try{
         const userToken = {
@@ -43,12 +45,14 @@ const login = async(req,res)=>{
     }
   }
 
+//Si sale mal algo mal a iniciar la sesion te manda a Loginfail
 const loginfail = (req,res)=>{
 
     req.logger.info("loginFail")
     res.status(400).send({status:"error", error:"Error de autenticación"})
   }
 
+//Iniciar sesion con Github
 const loginGithub = (req,res) =>{
     req.logger.info("github")
   }
