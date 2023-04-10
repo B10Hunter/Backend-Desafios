@@ -1,7 +1,5 @@
 const botonesAgregarCarrito = document.querySelectorAll('.agregar-carrito');
 
-
-
 // Agregar un event listener a cada botón de "Agregar al carrito"
 botonesAgregarCarrito.forEach((boton) => {
   boton.addEventListener('click', async (event) => {
