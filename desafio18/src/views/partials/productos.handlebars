@@ -1,0 +1,37 @@
+<h2 class="text-dark m-3 me-auto">Productos</h2>
+<br>
+{{#if objetos.length}}
+  <div class="table-responsive">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th class="text-center text-light">ID</th>
+          <th class="text-center text-light">Nombre</th>
+          <th class="text-center text-light">Precio</th>
+          <th class="text-center text-light">Src</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each objetos}}
+          <tr>
+            <td class="text-center text-light">#{{this._doc.id}}</td>
+            <td class="text-center text-light">{{this._doc.name}}</td>
+            <td class="text-center text-light">${{this._doc.price}}</td>
+             <td class="text-center text-light "><img src="{{this._doc.src}}" alt="src" height="100 " width="100"></td>
+            <td>
+        <button class="agregar-carrito"  data-id="{{this._doc._id}}" >Agregar al carrito</button>
+      </td>
+                </tr>
+          
+            
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <h3 class="alert alert-danger">No hay productos cargados</h3>
+{{/if}}
+
+<script src="/js/productos.js">
+</script>
