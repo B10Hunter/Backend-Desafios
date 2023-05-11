@@ -1,0 +1,35 @@
+<h1>Carrito de compras</h1>
+
+{{#if products.length}}
+  <div class="table-responsive">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th class="text-center text-light">ID</th>
+          <th class="text-center text-light">Nombre</th>
+          <th class="text-center text-light">Precio</th>
+          <th class="text-center text-light">Src</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+          <tr>
+            <td class="text-center text-light">#{{this.id}}</td>
+            <td class="text-center text-light">{{this.name}}</td>
+            <td class="text-center text-light">${{this.price}}</td>
+            <td class="text-center text-light "><img src="{{this.src}}" alt="src" height="100 " width="100">
+            </td>
+            <td>
+              <button class="borrar-prod-cart"  data-id="{{this._id}}" >borrar producto</button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <p>Tu carrito está vacío</p>
+{{/if}}
+
+<script src="/js/cart.js">
+</script>
