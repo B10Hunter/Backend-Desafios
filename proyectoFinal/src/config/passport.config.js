@@ -3,13 +3,14 @@ import local from 'passport-local';
 import { validatePassword } from '../utils.js';
 import userModel from '../model/UserSchema.js';
 import GithubStrategy from 'passport-github2';
+import { usersService } from '../dao/index.js';
 
 const LocalStrategy = local.Strategy;
 
 const initializeStrategies = () =>{
     passport.use('login',new LocalStrategy({ usernameField: 'email'}, async (email,password, done) =>{
   if (!email || !password) return done (null,false,{message:"Valores incompletos"})
-  const user = await userModel.findOne({ email });
+  const user = await usersService.getUserBy({ email });
   if (!user) return done (null,false,{message:"email inválidas"})
   const isValidPassword = await validatePassword(password , user.password);
   if(!isValidPassword) return done (null,false,{message:"Contraseña inválidas"})

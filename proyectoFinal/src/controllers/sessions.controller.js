@@ -1,7 +1,11 @@
 import jwt from 'jsonwebtoken'
-import userModel from '../model/UserSchema.js';
 import {createHash}  from '../utils.js';
 import config from '../config/config.js';
+import UserDTO from '../dao/DTO/userDTO.js';
+import UserDao from '../dao/userDAO.js';
+import { usersService } from '../dao/index.js';
+
+const userDao = new UserDao();
 
 //Regitrarse (Post)
 const register = async(req,res)=>{
@@ -12,15 +16,16 @@ const register = async(req,res)=>{
       if(!file) return res.status(500).send({status:"error",error:"Error al cargar el archivo"});
       const {first_name,last_name,email,password} = req.body;
       if(!first_name||!email||!password) return res.status(400).send({status:"error",error:"Valores incompletos"});
-      const exists  = await userModel.findOne({email});
+      const exists  = await usersService.getUserBy({email});
       if(exists) return res.status(400).send({status:"error",error:"El usuario ya existe"});
       const hashedPassword = await createHash(password);
-      const result = await userModel.create({
+      const result = await usersService.createUser ({
           first_name,
           last_name,
           email,
           password: hashedPassword,
-          avatar:`${req.protocol}://${req.hostname}:${process.env.PORT}/img/${file.filename}`
+          avatar:`${req.protocol}://${req.hostname}:${process.env.PORT}/img/${file.filename}`,
+          library:[]
       });
       res.send({status:"success",message:"Registado"});
     }
@@ -32,12 +37,7 @@ const register = async(req,res)=>{
 //Iniciar sesion por email y contraseña
 const login = async(req,res)=>{
     try{
-        const userToken = {
-            name:`${req.user.first_name} ${req.user.last_name}`,
-            role:req.user.role,
-            id:req.user._id,
-            avatar:req.user.avatar
-        }
+        const userToken = UserDTO.getTokenDTO(req.user);
         const token = jwt.sign(userToken,config.jwt.SECRET,{expiresIn:"1d"});
         res.cookie(config.jwt.COOKIE,token).send({status:"success",message:"logged in"})
     }catch(error){

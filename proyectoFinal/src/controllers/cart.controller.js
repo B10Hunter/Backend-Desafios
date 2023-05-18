@@ -1,10 +1,15 @@
 import config from "../config/config.js";
 import CarritoM from "../dao/carrito.js";
+import { cartsService, usersService , historieService , ticketsService} from "../dao/index.js";
+import UserDao from "../dao/userDAO.js";
 import Cart from '../model/carritoModel.js';
 import prodModel from "../model/prodModel.js";
 import jwt from "jsonwebtoken";
+import { makeid } from "../utils.js";
+import { DateTime } from "luxon";
 
 const carrito = new CarritoM();
+const userDao = new UserDao()
 
 //Ver carrito por user
 const cartPorUser =  async (req, res) => {
@@ -15,6 +20,15 @@ const cartPorUser =  async (req, res) => {
     const productos = cart[0].productos;
      res.json(productos);
   }
+
+
+const newCart =  async (req, res, next) => {
+
+    const body = JSON.stringify(req.body)
+    const { email } = JSON.parse(body)
+    const cartExist = await carrito.getCart(email)
+}
+
 
 //Borrar carrito
 const cartDeleteporId =  async (req, res, next) => {
@@ -77,9 +91,56 @@ await cart.save();
   }
 }
 
+const purchase = async (req,res) =>{
+  const user = await usersService.getUserBy({_id: req.user.id});
+  const cart = await cartsService.getCart(req.user.name);
+  const populatedCart = await cartsService.getCartById(cart._id,{populate:true})  
+  const priceTotal = cart.productos.reduce((total, product) => {
+    return total + product.price;
+  }, 0);
+  
+  
+  let exists = false;
+ 
+    cart.productos.forEach( prod =>{
+      exists = user.library.some(prodInLibrary => prodInLibrary._id.toString()=== prod._id.toString());
+    })
+    if (exists) return res.status(400).send({status:'error', error:'Operacion no completada por que un prod ya esta en la libreria '})
+    const newLibrary = [...user.library, ...cart.productos];
+    const ticket = {
+      user: user._id,
+      productos: cart.productos,
+      total: priceTotal,
+      code:makeid(20)
+    } 
+    console.log(ticket)
+    await usersService.updateUser(user._id,{library:newLibrary});
+    await cartsService.updateCart(cart._id,{productos:[]});
+    await ticketsService.createTicket(ticket);
+    const history = await historieService.getHistoryBy({user:user._id});
+    const event = {
+        event:'Purchase',
+        date: DateTime.now().toISO(),
+        description:`Hizo una compra de ${cart.productos.length>1?"Multiples productos":"un producto"}`,
+        tags: cart.productos
+    }
+    if(!history){
+        await historieService.createHistory({user:user._id,events:[event]})
+    }else{
+        history.events.push(event);
+        await historieService.updateHistory(history._id,{events:history.events})
+    }
+
+    res.send({status:"success", message:"Productos agregados a la libreria"});
+
+  }
+
+
   export default {
+    newCart,
     cartPorUser,
     cartDeleteporId,
     agregarProdAlCart,
-    borrarProdDelCart
+    borrarProdDelCart,
+    purchase
   }

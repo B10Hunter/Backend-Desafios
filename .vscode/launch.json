@@ -12,13 +12,14 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}//desafio18//src//server.js",
+            "program": "${workspaceFolder}//proyectoFinal//src//server.js",
             "env":{
                 "PORT": "8080",
                 "MONGO_URL": "mongodb+srv://Lucas:Lucasb10@proyecto-backend-coderh.llkhfym.mongodb.net/ProyectoBackend?retryWrites=true&w=majority",
                 "Mongo_SECRET" : "asjklsdhjka1asd2asd",
                 "JWT_SECRET" : "laksjdkajskdksajd",
-                "JWT_COOKIE" : "jwtCookie"
+                "JWT_COOKIE" : "jwtCookie",
+                "PERSISTENCE": "MONGO"
             },
             "restart": true,
             "runtimeExecutable": "nodemon"

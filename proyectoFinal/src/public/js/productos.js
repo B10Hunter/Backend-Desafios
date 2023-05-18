@@ -13,14 +13,13 @@ const apiprod = await fetch('/api/productos', {
 // Convertir la respuesta de la API a un objeto JSON
 const productos = await apiprod.json();
 
-
     // Obtener el ID del producto seleccionado del botón presionado
     const idProducto = event.target.getAttribute('data-id');
     console.log(`Se ha seleccionado el producto con id ${idProducto}`);
 
     
     // Buscar el producto correspondiente en la lista de productos obtenida de la API
-    const productoSeleccionado = productos.find((prod) => prod._id === idProducto);
+    const productoSeleccionado = productos.payload.find((prod) => prod._id === idProducto);
 
     if (!productoSeleccionado) {
       console.log(`No se encontró ningún producto con id ${idProducto}`);

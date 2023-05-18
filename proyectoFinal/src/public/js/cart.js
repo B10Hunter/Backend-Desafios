@@ -37,3 +37,14 @@ if (!productoSeleccionado) {
     window.location.reload();
     });
 });
+
+const buttonCompra = document.getElementById('compraButton');
+
+buttonCompra.addEventListener('click', async evt =>{
+  evt.preventDefault();
+  const res = await fetch ('/api/carrito/purchase',{
+    method: 'POST'
+  })
+  const result = await res.json();
+  console.log(result);
+})

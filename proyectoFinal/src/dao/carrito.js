@@ -15,7 +15,7 @@ class CarritoM {
     }
     async getCart(name) {
         try {
-            const cart = await cartModel.findOne({ usuario: name });
+            const cart = await cartModel.findOne({ usuario: name }).lean();
             return cart
         } catch (error) {
             req.logger.warn(`error en getCart: ${error}`)
@@ -55,6 +55,16 @@ class CarritoM {
         } catch (error) {
             req.logger.warn(`error en delProdById: ${error}`)
         }
+    }
+
+    getCartById = (id, options={}) =>{
+        if(options.populate)
+            return cartModel.findOne({_id:id}).populate('productos._id').lean();
+        return cartModel.findOne({_id:id}).lean();
+    }
+
+    updateCart = (id,cart) =>{
+        return cartModel.findByIdAndUpdate(id,{$set:cart})
     }
 }
 export default CarritoM;

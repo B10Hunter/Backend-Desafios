@@ -20,7 +20,16 @@ const schema = new mongoose.Schema({
         type:String,
         default:'user'
     },
-    avatar:String
+    avatar:String,
+    library: [
+        {
+            Producto: {
+                type:mongoose.SchemaTypes.ObjectId,
+                ref:'products'
+            },
+            purchase : Date
+        }
+    ]
 })
 
 const userModel = mongoose.model(collection,schema);

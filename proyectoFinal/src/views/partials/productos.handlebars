@@ -19,8 +19,17 @@
             <td class="text-center text-light">${{this._doc.price}}</td>
              <td class="text-center text-light "><img src="{{this._doc.src}}" alt="src" height="100 " width="100"></td>
             <td>
-        <button class="agregar-carrito"  data-id="{{this._doc._id}}" >Agregar al carrito</button>
-      </td>
+              {{#if this.inCart}}
+                <button disabled>El producto ya esta en el carrito </button>
+              {{else}}
+              {{#if this.inLibrary}}
+              <button disabled>El producto ya esta en la libreria </button>
+              {{else}}
+              <button class="agregar-carrito"  data-id="{{this._doc._id}}" >Agregar al carrito</button>
+              {{/if}}
+              {{/if}}
+
+            </td>
                 </tr>
           
             
