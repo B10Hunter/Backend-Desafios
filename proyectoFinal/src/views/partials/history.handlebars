@@ -1,0 +1,16 @@
+    <h3>Historial de actividades:</h3>
+    {{#if events}}
+    <ul>
+        {{#each events}}
+        <li>
+            <div>
+                <p>{{this.event}}</p>
+                <p>{{this.description}}</p>
+                
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{else}}
+    <h3> {{user.name}} no tenes un historial de compra  </h3>
+    {{/if}}

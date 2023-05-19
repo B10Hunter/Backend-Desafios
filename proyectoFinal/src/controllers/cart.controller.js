@@ -7,6 +7,7 @@ import prodModel from "../model/prodModel.js";
 import jwt from "jsonwebtoken";
 import { makeid } from "../utils.js";
 import { DateTime } from "luxon";
+import nodemailer from 'nodemailer';
 
 const carrito = new CarritoM();
 const userDao = new UserDao()
@@ -113,7 +114,40 @@ const purchase = async (req,res) =>{
       total: priceTotal,
       code:makeid(20)
     } 
-    console.log(ticket)
+
+    //envio de ticket al email del usuario
+    const GMAIL_PWD = config.app.GMAIL_PWD
+    const GMAIL_USER = config.app.GMAIL_USER
+
+    const transporter = nodemailer.createTransport({
+      service:'gmail',
+      port:587,
+      auth:{
+          user:GMAIL_USER,
+          pass:GMAIL_PWD
+      }
+    })
+
+    const productosHTML = ticket.productos.map((producto) => {
+      return `<p>Nombre: ${producto.name}</p>
+              <p>Precio: $${producto.price}</p>`;
+    });
+
+    
+    const email = await transporter.sendMail({
+      from:`${GMAIL_USER}`,
+      to:`${user.email}`,
+      subject:'Compra',
+      html:`<div>
+            <h1>Hola ${req.user.name}</h1></br>
+            <h2>Acá abajo le dejamos su ticket de compra</h2></br>
+            <p>Productos:</p> </br>
+            <div> ${productosHTML} </div></br>
+            <p>Total pagado: $${ticket.total}</p>
+            <h2>Gracias por su compra.</h2>
+            </div>`
+    })
+   
     await usersService.updateUser(user._id,{library:newLibrary});
     await cartsService.updateCart(cart._id,{productos:[]});
     await ticketsService.createTicket(ticket);
@@ -134,6 +168,8 @@ const purchase = async (req,res) =>{
     res.send({status:"success", message:"Productos agregados a la libreria"});
 
   }
+
+
 
 
   export default {

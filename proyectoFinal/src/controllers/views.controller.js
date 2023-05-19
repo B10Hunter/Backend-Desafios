@@ -1,4 +1,4 @@
-import { cartsService, prodService, usersService } from "../dao/index.js";
+import { cartsService, prodService, usersService , historieService} from "../dao/index.js";
 import jwt from "jsonwebtoken";
 import config from "../config/config.js";
 
@@ -7,14 +7,14 @@ const home = async (req, res) => {
     let arrProd = await prodService.getAll();
     const cart = await cartsService.getCart(req.user.name)
     const user = await usersService.getUserBy({_id: req.user.id})
-    
+    const history = await historieService.getHistoryBy({user:req.user.id})
     arrProd = arrProd.map(prod =>{
       const existsInCart = cart.productos.some( v => v._id.toString()===prod._id.toString())
       const existsInLibrary = user.library.some(p => p._id.toString()===prod._id.toString())
       return {...prod,inCart:existsInCart, inLibrary:existsInLibrary}
   })
     req.logger.info("Inicio")
-    res.render('inicio', { user:req.user, objetos:arrProd });
+    res.render('inicio', { user:req.user, objetos:arrProd, events:history?history.events:[] });
 }
 
 const register = (req,res)=>{
@@ -47,6 +47,8 @@ const cart = async (req, res) => {
 
     res.render('carrito', {products:cart.productos})
 }
+
+
 
 export default {
     cart,

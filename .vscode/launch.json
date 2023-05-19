@@ -19,7 +19,9 @@
                 "Mongo_SECRET" : "asjklsdhjka1asd2asd",
                 "JWT_SECRET" : "laksjdkajskdksajd",
                 "JWT_COOKIE" : "jwtCookie",
-                "PERSISTENCE": "MONGO"
+                "PERSISTENCE": "MONGO",
+                "GMAIL_PWD" : "wkxxklyqdkzhkdim",
+                "GMAIL_USER":"bremcerezita@gmail.com"
             },
             "restart": true,
             "runtimeExecutable": "nodemon"
