@@ -1,6 +1,8 @@
-import { cartsService, prodService, usersService , historieService} from "../dao/index.js";
 import jwt from "jsonwebtoken";
+
 import config from "../config/config.js";
+import { cartsService, prodService, usersService , historieService} from "../dao/index.js";
+
 
 const home = async (req, res) => {
     await cartsService.createCart(req.user.name);

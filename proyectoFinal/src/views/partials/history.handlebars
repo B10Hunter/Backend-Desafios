@@ -2,11 +2,12 @@
     {{#if events}}
     <ul>
         {{#each events}}
+        <hr>
         <li>
             <div>
                 <p>{{this.event}}</p>
                 <p>{{this.description}}</p>
-                
+                <p> Fecha y hora : {{this.date}}</p>
             </div>
         </li>
         {{/each}}

@@ -2,17 +2,24 @@ import express from "express";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import handlebars from "express-handlebars"
-import __dirname from "./utils.js";
-import viewsRouter from "./router/views.router.js";
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose'
-import sessionsRouter from './router/sessions.router.js'
 import passport from "passport";
+
+import __dirname from "./utils.js";
 import initializeStrategies from "./config/passport.config.js";
 import config from "./config/config.js";
 import { addLogger } from "./middlewares/logger.js";
-import cookieParser from 'cookie-parser';
+
+import viewsRouter from "./router/views.router.js";
+import sessionsRouter from './router/sessions.router.js'
 import cartRouter from "./router/cart.router.js"
 import apiProd from "./router/product.router.js";
+
+
+
+
+
 
 
 const app = express();
@@ -23,7 +30,7 @@ mongoose.set("strictQuery", false);
 const connect = mongoose.connect(config.mongo.URL , {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  })
+})
 
 app.use(session({
     store: MongoStore.create({

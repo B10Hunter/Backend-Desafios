@@ -1,13 +1,15 @@
+import { DateTime } from "luxon";
+import nodemailer from 'nodemailer';
+import jwt from "jsonwebtoken";
 import config from "../config/config.js";
 import CarritoM from "../dao/CartDAO.js";
 import { cartsService, usersService , historieService , ticketsService} from "../dao/index.js";
 import UserDao from "../dao/UserDAO.js";
 import Cart from '../model/carritoModel.js';
 import prodModel from "../model/prodModel.js";
-import jwt from "jsonwebtoken";
+
 import { makeid } from "../utils.js";
-import { DateTime } from "luxon";
-import nodemailer from 'nodemailer';
+
 
 const carrito = new CarritoM();
 const userDao = new UserDao()
@@ -129,8 +131,11 @@ const purchase = async (req,res) =>{
     })
 
     const productosHTML = ticket.productos.map((producto) => {
-      return `<p>Nombre: ${producto.name}</p>
-              <p>Precio: $${producto.price}</p>`;
+      return `
+              <tr>
+                <td>${producto.name}</td>
+                <td>$${producto.price}</td>
+              </tr>`;
     });
 
     
@@ -139,15 +144,29 @@ const purchase = async (req,res) =>{
       to:`${user.email}`,
       subject:'Compra',
       html:`<div>
-            <h1>Hola ${req.user.name}</h1></br>
-            <h2>Acá abajo le dejamos su ticket de compra</h2></br>
-            <p>Productos:</p> </br>
-            <div> ${productosHTML} </div></br>
-            <p>Total pagado: $${ticket.total}</p>
-            <h2>Gracias por su compra.</h2>
+              <h1>Hola ${req.user.name}</h1></br>
+              <h2>Acá abajo le dejamos su ticket de compra</h2></br>
+              <div>
+              <hr>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Precio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${productosHTML}
+                  </tbody>
+                </table>
+                <hr>
+              </div>
+              <p>Total pagado: $${ticket.total}</p></br>
+              <p>Fecha de la compra es ${DateTime.now().toISO()} </p>
+              <h2>Gracias por su compra.</h2>
             </div>`
-    })
-   
+    })  
+
     await usersService.updateUser(user._id,{library:newLibrary});
     await cartsService.updateCart(cart._id,{productos:[]});
     await ticketsService.createTicket(ticket);

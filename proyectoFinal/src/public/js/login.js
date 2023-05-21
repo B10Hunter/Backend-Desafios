@@ -15,6 +15,9 @@ form.addEventListener('submit',async evt=>{
         }
     })
     const result = await response.json();
-    if(result.status==="success")
-    window.location.replace('/inicio');
+    if(result.status==="error")
+    window.location.replace('/api/sessions/loginFail');
+    else{
+        window.location.replace('/inicio');
+    }
 })
