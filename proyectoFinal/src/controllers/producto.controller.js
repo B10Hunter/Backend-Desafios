@@ -1,5 +1,5 @@
 import { prodService } from "../dao/index.js";
-import ProductosM from "../dao/productos.js";
+import ProductosM from "../dao/ProdsDAO.js";
 
 const productos = new ProductosM();
 

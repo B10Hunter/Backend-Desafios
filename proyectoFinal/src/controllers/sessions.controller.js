@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import {createHash}  from '../utils.js';
 import config from '../config/config.js';
 import UserDTO from '../dao/DTO/userDTO.js';
-import UserDao from '../dao/userDAO.js';
+import UserDao from '../dao/UserDAO.js';
 import { usersService } from '../dao/index.js';
 
 const userDao = new UserDao();

@@ -1,7 +1,7 @@
 import config from "../config/config.js";
-import CarritoM from "../dao/carrito.js";
+import CarritoM from "../dao/CartDAO.js";
 import { cartsService, usersService , historieService , ticketsService} from "../dao/index.js";
-import UserDao from "../dao/userDAO.js";
+import UserDao from "../dao/UserDAO.js";
 import Cart from '../model/carritoModel.js';
 import prodModel from "../model/prodModel.js";
 import jwt from "jsonwebtoken";
