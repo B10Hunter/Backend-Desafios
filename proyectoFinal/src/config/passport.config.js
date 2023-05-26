@@ -9,11 +9,11 @@ const LocalStrategy = local.Strategy;
 
 const initializeStrategies = () =>{
     passport.use('login',new LocalStrategy({ usernameField: 'email'}, async (email,password, done) =>{
-  if (!email || !password) return done (null,false,{message:"Valores incompletos"})
-  const user = await usersService.getUserBy({ email });
-  if (!user) return done (null,false,{message:"email inválidas"})
-  const isValidPassword = await validatePassword(password , user.password);
-  if(!isValidPassword) return done (null,false,{message:"Contraseña inválidas"})
+    if (!email || !password) return done (null,false,{message:"Valores incompletos"})
+        const user = await usersService.getUserBy({ email });
+    if (!user) return done (null,false,{message:"email inválidas"})
+        const isValidPassword = await validatePassword(password , user.password);
+    if(!isValidPassword) return done (null,false,{message:"Contraseña inválidas"})
         return done(null,user)//si no salio ningun error mostrara el "user"
     }))
 
